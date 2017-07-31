@@ -60,7 +60,14 @@ app.post("/guess", function(req, res) {
 
 app.post("/guess/:guess", function(req, res) {
   let guess = req.body.guess.toLowerCase()
-  gameData.guess.push(guess)
+
+  for (var i = 0; i < gameData.guess.length; i++) {
+    if (guess != gameData.guess[i]) {
+      // Only add guess to list of guesses if it wasn't already guessed
+      gameData.guess.push(guess)
+    }
+  }
+
   for (var i = 0; i < wordLetter.length; i++) {
     if (guess === wordLetter[i]) {
       gameData.progress[i] = guess
