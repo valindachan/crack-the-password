@@ -1,0 +1,42 @@
+body {
+  font-family: Helvetica;
+  color: #53565a;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.progress {
+  display: flex;
+  flex-direction: row;
+  height: 55px;
+}
+
+.progress-letter {
+  margin: 3px;
+  width: 30px;
+  border-bottom: 1px solid #53565a;
+  display: flex;
+  justify-content: center;
+  color: #1ba39c;
+}
+
+input {
+  font-size: 1em;
+  padding: 20px;
+  flex-grow: 2;
+  border: 1px solid #ccc;
+  /*border-top-left-radius: 15px;*/
+  /*border-bottom-left-radius: 15px;*/
+}
+
+button {
+  background-color: #1ba39c;
+  color: #fff;
+  padding: 20px;
+  font-size: 1em;
+  border: 0px solid #1ba39c;
+  margin: 0;
+  flex-grow: 1;
+}
