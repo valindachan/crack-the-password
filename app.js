@@ -23,9 +23,6 @@ const words = fs
 let word = words[Math.floor(Math.random() * words.length)]
 let wordLetter = word.split("")
 
-console.log(word)
-console.log(wordLetter)
-
 let wordLength = word.length
 
 let gameData = {
@@ -44,6 +41,10 @@ for (var i = 0; i < wordLength; i++) {
 
 app.get("/", function(req, res) {
   res.render("index", gameData)
+})
+
+app.get("/play", function(req, res) {
+  res.redirect("/")
 })
 
 app.post("/guess", function(req, res) {
@@ -70,7 +71,7 @@ app.post("/guess", function(req, res) {
       }
     }
   } else {
-    gameData.messageToUser = "Guess a new letter you haven't already tried."
+    gameData.messageToUser = "You've guessed that already. Try a new letter."
   }
 
   // If the user hasn't already guessed this letter AND guessed incorrectly,
@@ -80,10 +81,12 @@ app.post("/guess", function(req, res) {
   }
 
   // Game over
-  if (gameData.numMatches === wordLength) {
+  if (numMatches === wordLength) {
     gameData.messageToUser = "Congrats, you've won! Play again?"
+    gameData.gameOver = true
   } else if (gameData.numGuesses === 0) {
     gameData.messageToUser = `Sorry, you lost. The word was "${word}".`
+    gameData.gameOver = true
   }
 
   res.redirect("/")
@@ -113,7 +116,7 @@ app.post("/guess/:guess", function(req, res) {
       }
     }
   } else {
-    gameData.messageToUser = "You've guessed this already. Try a new letter."
+    gameData.messageToUser = "You've guessed that already. Try a new letter."
   }
 
   // If the user hasn't already guessed this letter AND guessed incorrectly,
@@ -123,10 +126,12 @@ app.post("/guess/:guess", function(req, res) {
   }
 
   // Game over
-  if (gameData.numMatches === wordLength) {
+  if (numMatches === wordLength) {
     gameData.messageToUser = "Congrats, you've won! Play again?"
+    gameData.gameOver = true
   } else if (gameData.numGuesses === 0) {
     gameData.messageToUser = `Sorry, you lost. The word was "${word}".`
+    gameData.gameOver = true
   }
 
   res.redirect("/")
