@@ -14,11 +14,11 @@
       {{#progress}}<div class="progress-letter"><h2>{{.}}</h2></div>{{/progress}}
     </div>
     {{^gameOver}}
-    <form action="/guess/{{guess}}" method="post">
+    <form name="guess" action="/guess/{{guess}}" method="post">
       <div class="input">
         <p>{{#messageToUser}}{{.}}{{/messageToUser}}{{^messageToUser}}{{.}}{{/messageToUser}}</p>
         <input type="text" name="guess" placeholder="Enter a letter" />
-        <button type="submit"><i class="fa fa-plus" aria-hidden="true"></i> Make a Guess</button>
+        <button type="submit" onsubmit="return validateGuess()"><i class="fa fa-plus" aria-hidden="true"></i> Make a Guess</button>
       </div>
     </form>
     <p># Guesses Left: {{#numGuesses}}{{.}}{{/numGuesses}}{{^numGuesses}}0{{/numGuesses}}</p>
@@ -30,7 +30,6 @@
       <form action="/play" method="get">
         <button type="submit"><i class="fa fa-plus" aria-hidden="true"></i> Play Again</button>
       </form>
-
     {{/gameOver}}
 
   </body>
