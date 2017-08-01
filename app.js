@@ -26,13 +26,12 @@ let wordLetter = word.split("")
 console.log(word)
 console.log(wordLetter)
 
-console.log(word.length)
-
 let wordLength = word.length
 
 let gameData = {
   progress: [],
-  guess: []
+  guess: [],
+  numGuesses: 8
 }
 
 let numGuesses = 8
@@ -43,36 +42,64 @@ for (var i = 0; i < wordLength; i++) {
   gameData.progress.push(" ")
 }
 
+console.log(gameData)
+
 app.get("/", function(req, res) {
   res.render("index", gameData)
 })
 
 app.post("/guess", function(req, res) {
-  let guess = req.body.guess
-  gameData.guess.push(guess)
+  let guess = req.body.guess.toLowerCase()
+  let alreadyGuessed = false
+
+  for (var i = 0; i < gameData.guess.length; i++) {
+    if (guess === gameData.guess[i]) {
+      let match = "yes"
+      console.log(match)
+      console.log(guess + "=?" + gameData.guess[i] + match)
+      alreadyGuessed = true
+    }
+  }
+
+  // If the user hasn't already guessed this letter
+  if (alreadyGuessed === false) {
+    gameData.guess.push(guess)
+    gameData.numGuesses = gameData.numGuesses - 1
+  } else {
+  }
   for (var i = 0; i < wordLetter.length; i++) {
     if (guess === wordLetter[i]) {
       gameData.progress[i] = guess
     }
   }
+
   res.redirect("/")
 })
 
 app.post("/guess/:guess", function(req, res) {
   let guess = req.body.guess.toLowerCase()
+  let alreadyGuessed = false
 
   for (var i = 0; i < gameData.guess.length; i++) {
-    if (guess != gameData.guess[i]) {
-      // Only add guess to list of guesses if it wasn't already guessed
-      gameData.guess.push(guess)
+    if (guess === gameData.guess[i]) {
+      console.log(guess + "=?" + gameData.guess[i])
+      alreadyGuessed = true
     }
   }
 
+  // If the user hasn't already guessed this letter
+  if (alreadyGuessed === false) {
+    gameData.guess.push(guess)
+    gameData.numGuesses = gameData.numGuesses - 1
+  } else {
+  }
   for (var i = 0; i < wordLetter.length; i++) {
     if (guess === wordLetter[i]) {
       gameData.progress[i] = guess
+      console.log(gameData.progress)
     }
   }
+
   res.redirect("/")
 })
 
