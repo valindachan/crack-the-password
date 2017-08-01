@@ -23,13 +23,18 @@ body {
   color: #1ba39c;
 }
 
+.input {
+  width: 50vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
 input {
   font-size: 1em;
   padding: 20px;
   flex-grow: 2;
   border: 1px solid #ccc;
-  /*border-top-left-radius: 15px;*/
-  /*border-bottom-left-radius: 15px;*/
 }
 
 button {
