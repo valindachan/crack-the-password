@@ -51,35 +51,11 @@ app.get("/", function(req, res) {
 app.post("/guess", function(req, res) {
   let guess = req.body.guess.toLowerCase()
   let alreadyGuessed = false
+  let match = false
 
-  for (var i = 0; i < gameData.guess.length; i++) {
-    if (guess === gameData.guess[i]) {
-      let match = "yes"
-      console.log(match)
-      console.log(guess + "=?" + gameData.guess[i] + match)
-      alreadyGuessed = true
-    }
-  }
+  console.log(`2 ${guess}`)
 
-  // If the user hasn't already guessed this letter
-  if (alreadyGuessed === false) {
-    gameData.guess.push(guess)
-    gameData.numGuesses = gameData.numGuesses - 1
-  } else {
-  }
-  for (var i = 0; i < wordLetter.length; i++) {
-    if (guess === wordLetter[i]) {
-      gameData.progress[i] = guess
-    }
-  }
-
-  res.redirect("/")
-})
-
-app.post("/guess/:guess", function(req, res) {
-  let guess = req.body.guess.toLowerCase()
-  let alreadyGuessed = false
-
+  // Go through each guess and see if the user has already guessed this
   for (var i = 0; i < gameData.guess.length; i++) {
     if (guess === gameData.guess[i]) {
       console.log(guess + "=?" + gameData.guess[i])
@@ -90,14 +66,55 @@ app.post("/guess/:guess", function(req, res) {
   // If the user hasn't already guessed this letter
   if (alreadyGuessed === false) {
     gameData.guess.push(guess)
-    gameData.numGuesses = gameData.numGuesses - 1
-  } else {
-  }
-  for (var i = 0; i < wordLetter.length; i++) {
-    if (guess === wordLetter[i]) {
-      gameData.progress[i] = guess
-      console.log(gameData.progress)
+    // See if there's a match
+    for (var i = 0; i < wordLetter.length; i++) {
+      if (guess === wordLetter[i]) {
+        gameData.progress[i] = guess
+        match = true
+      }
     }
+  }
+
+  // If the user hasn't already guessed this letter AND guessed incorrectly,
+  // count this toward the 8 turns they are allowed
+  if (alreadyGuessed === false && match === false) {
+    gameData.numGuesses = gameData.numGuesses - 1
+  }
+
+  res.redirect("/")
+})
+
+app.post("/guess/:guess", function(req, res) {
+  let guess = req.body.guess.toLowerCase()
+  let alreadyGuessed = false
+  let match = false
+
+  console.log(`2 ${guess}`)
+
+  // Go through each guess and see if the user has already guessed this
+  for (var i = 0; i < gameData.guess.length; i++) {
+    if (guess === gameData.guess[i]) {
+      console.log(guess + "=?" + gameData.guess[i])
+      alreadyGuessed = true
+    }
+  }
+
+  // If the user hasn't already guessed this letter
+  if (alreadyGuessed === false) {
+    gameData.guess.push(guess)
+    // See if there's a match
+    for (var i = 0; i < wordLetter.length; i++) {
+      if (guess === wordLetter[i]) {
+        gameData.progress[i] = guess
+        match = true
+      }
+    }
+  }
+
+  // If the user hasn't already guessed this letter AND guessed incorrectly,
+  // count this toward the 8 turns they are allowed
+  if (alreadyGuessed === false && match === false) {
+    gameData.numGuesses = gameData.numGuesses - 1
   }
 
   res.redirect("/")
