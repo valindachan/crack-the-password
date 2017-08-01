@@ -2,8 +2,17 @@ const fs = require("fs")
 const bodyParser = require("body-parser")
 const express = require("express")
 const mustacheExpress = require("mustache-express")
+const expressSession = require("express-session")
 
 const app = express()
+
+app.use(
+  expressSession({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: true
+  })
+)
 
 app.use(express.static("public"))
 
@@ -22,7 +31,6 @@ const words = fs
 
 let word = words[Math.floor(Math.random() * words.length)]
 let wordLetter = word.split("")
-
 let wordLength = word.length
 
 let gameData = {

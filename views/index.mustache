@@ -17,8 +17,8 @@
     <form name="guess" action="/guess/{{guess}}" method="post">
       <div class="input">
         <p>{{#messageToUser}}{{.}}{{/messageToUser}}{{^messageToUser}}{{.}}{{/messageToUser}}</p>
-        <input type="text" name="guess" placeholder="Enter a letter" />
-        <button type="submit" onsubmit="return validateGuess()"><i class="fa fa-plus" aria-hidden="true"></i> Make a Guess</button>
+        <input type="text" name="guess" placeholder="Enter a letter"  maxlength="1" pattern="[A-Za-z]"/>
+        <button type="submit"><i class="fa fa-plus" aria-hidden="true"></i> Make a Guess</button>
       </div>
     </form>
     <p># Guesses Left: {{#numGuesses}}{{.}}{{/numGuesses}}{{^numGuesses}}0{{/numGuesses}}</p>
