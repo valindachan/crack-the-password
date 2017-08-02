@@ -22,13 +22,13 @@
       </div>
     </form>
     <p># Guesses Left: {{#numGuesses}}{{.}}{{/numGuesses}}{{^numGuesses}}0{{/numGuesses}}</p>
-    <p>Guesses: {{#guess}}{{.}}, {{/guess}}</p>
+    <p>Guesses: {{#guess}}{{.}} / {{/guess}}</p>
     {{/gameOver}}
 
     {{#gameOver}}
       <p>{{#messageToUser}}{{.}}{{/messageToUser}}</p>
       <form action="/play" method="get">
-        <button type="submit"><i class="fa fa-plus" aria-hidden="true"></i> Play Again</button>
+        <button type="submit">Play Again</button>
       </form>
     {{/gameOver}}
 
