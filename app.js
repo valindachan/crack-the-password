@@ -52,6 +52,26 @@ app.get("/", function(req, res) {
 })
 
 app.get("/play", function(req, res) {
+  word = words[Math.floor(Math.random() * words.length)]
+  wordLetter = word.split("")
+  wordLength = word.length
+
+  let numMatches = 0
+
+  console.log(numMatches)
+
+  gameData = {
+    progress: [],
+    guess: [],
+    numGuesses: 8,
+    messageToUser: "Go ahead and guess a letter."
+  }
+
+  // Set progress word
+  for (var i = 0; i < wordLength; i++) {
+    gameData.progress.push(" ")
+  }
+
   res.redirect("/")
 })
 
@@ -59,6 +79,8 @@ app.post("/guess", function(req, res) {
   let guess = req.body.guess.toLowerCase()
   let alreadyGuessed = false
   let match = false
+
+  gameData.messageToUser = "Go ahead and guess a letter."
 
   // Go through each guess and see if the user has already guessed this
   for (var i = 0; i < gameData.guess.length; i++) {
@@ -96,6 +118,8 @@ app.post("/guess", function(req, res) {
     gameData.messageToUser = `Sorry, you lost. The word was "${word}".`
     gameData.gameOver = true
   }
+
+  req.session.gameData = gameData
 
   res.redirect("/")
 })
@@ -105,6 +129,8 @@ app.post("/guess/:guess", function(req, res) {
   let alreadyGuessed = false
   let match = false
 
+  gameData.messageToUser = "Go ahead and guess a letter."
+
   // Go through each guess and see if the user has already guessed this
   for (var i = 0; i < gameData.guess.length; i++) {
     if (guess === gameData.guess[i]) {
@@ -141,6 +167,8 @@ app.post("/guess/:guess", function(req, res) {
     gameData.messageToUser = `Sorry, you lost. The word was "${word}".`
     gameData.gameOver = true
   }
+
+  req.session.gameData = gameData
 
   res.redirect("/")
 })
