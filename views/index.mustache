@@ -18,7 +18,7 @@
       <form name="guess" action="/guess/{{guess}}" method="post">
         <div class="input">
           <p>{{#messageToUser}}{{.}}{{/messageToUser}}{{^messageToUser}}{{.}}{{/messageToUser}}</p>
-          <input type="text" name="guess" placeholder="Enter a letter" maxlength="1" pattern="[A-Za-z]"/>
+          <input type="text" name="guess" placeholder="Enter a letter" required="required" maxlength="1" pattern="[A-Za-z]"/>
           <button type="submit"><i class="fa fa-plus" aria-hidden="true"></i> Crack the password.</button>
         </div>
       </form>
