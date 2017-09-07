@@ -19,11 +19,11 @@
         <div class="input">
           <p>{{#messageToUser}}{{.}}{{/messageToUser}}{{^messageToUser}}{{.}}{{/messageToUser}}</p>
           <input type="text" name="guess" placeholder="Enter a letter" required="required" maxlength="1" pattern="[A-Za-z]"/>
-          <button type="submit"><i class="fa fa-plus" aria-hidden="true"></i> Crack the password.</button>
+          <button type="submit"><i class="fa fa-plus" aria-hidden="true"></i> Guess a letter</button>
         </div>
       </form>
-      <p># Guesses Left: {{#numGuesses}}{{.}}{{/numGuesses}}{{^numGuesses}}0{{/numGuesses}}</p>
-      <p>Guesses: {{#guess}}{{.}} / {{/guess}}</p>
+      <p># Attempts Left: <span class="data">{{#numGuesses}}{{.}}{{/numGuesses}}{{^numGuesses}}0{{/numGuesses}}</span></p>
+      <p>Guesses: <span class="data">{{#guess}}{{.}} / {{/guess}}</span></p>
       {{/gameOver}}
 
       {{#gameOver}}

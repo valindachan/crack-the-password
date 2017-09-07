@@ -164,7 +164,7 @@ app.post("/guess/:guess", function(req, res) {
     gameData.messageToUser = "Congrats, you've won! Play again?"
     gameData.gameOver = true
   } else if (gameData.numGuesses === 0) {
-    gameData.messageToUser = `Sorry, you lost. The word was "${word}".`
+    gameData.messageToUser = `Sorry, you lost. The password was "${word}".`
     gameData.gameOver = true
   }
 
