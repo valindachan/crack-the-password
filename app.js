@@ -37,7 +37,7 @@ let gameData = {
   progress: [],
   guess: [],
   numGuesses: 8,
-  messageToUser: "Go ahead and guess a letter."
+  messageToUser: "Enter a letter."
 }
 
 let numMatches = 0
@@ -64,7 +64,7 @@ app.get("/play", function(req, res) {
     progress: [],
     guess: [],
     numGuesses: 8,
-    messageToUser: "Go ahead and guess a letter."
+    messageToUser: "Enter a letter."
   }
 
   // Set progress word
@@ -80,7 +80,7 @@ app.post("/guess", function(req, res) {
   let alreadyGuessed = false
   let match = false
 
-  gameData.messageToUser = "Go ahead and guess a letter."
+  gameData.messageToUser = "Enter a letter."
 
   // Go through each guess and see if the user has already guessed this
   for (var i = 0; i < gameData.guess.length; i++) {
@@ -101,7 +101,7 @@ app.post("/guess", function(req, res) {
       }
     }
   } else {
-    gameData.messageToUser = "You've guessed that already. Try a new letter."
+    gameData.messageToUser = "You've tried that already. Try a new letter."
   }
 
   // If the user hasn't already guessed this letter AND guessed incorrectly,
@@ -129,7 +129,7 @@ app.post("/guess/:guess", function(req, res) {
   let alreadyGuessed = false
   let match = false
 
-  gameData.messageToUser = "Go ahead and guess a letter."
+  gameData.messageToUser = "Enter a letter."
 
   // Go through each guess and see if the user has already guessed this
   for (var i = 0; i < gameData.guess.length; i++) {
@@ -150,7 +150,7 @@ app.post("/guess/:guess", function(req, res) {
       }
     }
   } else {
-    gameData.messageToUser = "You've guessed that already. Try a new letter."
+    gameData.messageToUser = "You've tried that already. Try a new letter."
   }
 
   // If the user hasn't already guessed this letter AND guessed incorrectly,

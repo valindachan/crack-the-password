@@ -1,10 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
+@import url('https://fonts.googleapis.com/css?family=Special+Elite');
+
 body {
-  font-family: Helvetica;
-  color: #53565a;
+  font-family: 'Special Elite', cursive;
+  color: #fff;
+  background: #1c1c1c;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+}
+
+.game-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 
 .progress {
@@ -20,7 +31,7 @@ body {
   border-bottom: 1px solid #53565a;
   display: flex;
   justify-content: center;
-  color: #1ba39c;
+  color: #00AA00;
 }
 
 .input {
@@ -38,11 +49,11 @@ input {
 }
 
 button {
-  background-color: #1ba39c;
+  background-color: #00AA00;
   color: #fff;
   padding: 20px;
   font-size: 1em;
-  border: 1px solid #1ba39c;
+  border: 1px solid #00AA00;
   margin: 0;
   flex-grow: 1;
 }
