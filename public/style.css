@@ -28,7 +28,7 @@ body {
 .progress-letter {
   margin: 3px;
   width: 30px;
-  border-bottom: 1px solid #53565a;
+  border-bottom: 1px solid #fff;
   display: flex;
   justify-content: center;
   color: #00AA00;

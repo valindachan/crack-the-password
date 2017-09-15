@@ -37,7 +37,7 @@ let gameData = {
   progress: [],
   guess: [],
   numGuesses: 8,
-  messageToUser: "Enter a letter."
+  messageToUser: "Enter a letter"
 }
 
 let numMatches = 0
@@ -64,7 +64,7 @@ app.get("/play", function(req, res) {
     progress: [],
     guess: [],
     numGuesses: 8,
-    messageToUser: "Enter a letter."
+    messageToUser: "Enter a letter"
   }
 
   // Set progress word
@@ -80,7 +80,7 @@ app.post("/guess", function(req, res) {
   let alreadyGuessed = false
   let match = false
 
-  gameData.messageToUser = "Enter a letter."
+  gameData.messageToUser = "Enter a letter"
 
   // Go through each guess and see if the user has already guessed this
   for (var i = 0; i < gameData.guess.length; i++) {
